@@ -3,7 +3,9 @@ import zeep
 
 
 class EuromsgMailer(object):
-    """"""
+    """
+    Provides a simple interface for sending an email over euro.message service.
+    """
     AUTHORIZATION_URL = "https://ws.euromsg.com/live/auth.asmx?wsdl"
     POST_URL = "https://ws.euromsg.com/live/post.asmx?wsdl"
 
@@ -19,6 +21,19 @@ class EuromsgMailer(object):
             self.POST_URL = _posturl
 
     def send_mail(self, from_name, from_address, replyto_address, to_name, to_address, subject, message, encoding="UTF-8"):
+        """
+        Build and send an email according to given arguments.
+        :param from_name: From name
+        :param from_address: From address
+        :param replyto_address: Address for replies
+        :param to_name: Name to send
+        :param to_address: Email address to send
+        :param subject: Subject of an email
+        :param message: Email's body as an HTML
+        :param encoding: Encoding of email. Default: UTF-8
+        :return: Euromsg's PostID
+        :raise Exception: Raises an exception on unseccessful operations
+        """
         client = zeep.Client(wsdl=self.AUTHORIZATION_URL)
         resp = (client.service.Login(self.username, self.password))
         try:
@@ -41,6 +56,7 @@ class EuromsgMailer(object):
         ))
 
         if post_resp["Code"] == "00":
-            return True
+            return post_resp["PostID"]
         else:
-            return False
+            raise Exception("{}: {}".format(post_resp["Code"],
+                                            post_resp["Message"]))
