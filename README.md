@@ -2,7 +2,11 @@
 Python utility for sending email over euro.message (https://www.euromsg.com) service.
 
 ## Installation
-
+From pypi:
+```bash
+$ pip install python-euromsg
+```
+From github:
 ```bash
 $ pip install git+https://github.com/nazmizorlu/python-euromsg.git
 ```
