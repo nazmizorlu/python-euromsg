@@ -4,7 +4,7 @@ Python utility for sending email over euro.message (https://www.euromsg.com) ser
 ## Installation
 
 ```bash
-$ pip install git+https://github.com/nazmizorlu/python-linkedin.git
+$ pip install git+https://github.com/nazmizorlu/python-euromsg.git
 ```
 
 ## Usage
