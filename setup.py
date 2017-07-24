@@ -46,6 +46,6 @@ setup(
 
     keywords='euromsg euro.message',
     packages=['euromsg', ],
-    install_require=['zeep>=1.3.0', ],
+    install_requires=['zeep>=1.3.0', ],
     zip_safe=True,
 )
